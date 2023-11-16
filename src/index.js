@@ -8,7 +8,7 @@ const port = process.env.PORT ?? 3000;
 
 app.use(cors({
 	  origin: (origin, allowFn) => {
-		    allowFn(null, 'http://localhost:3001');
+		    allowFn(null, 'http://localhost:3000');
 		    allowFn(null, 'https://siembrasana.bio');
 		},
 }));
