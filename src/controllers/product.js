@@ -1,10 +1,21 @@
-//make an router callbacks for product
 const { Product } = require("../models");
 
 //get all products
-const getAll =  async (req, res) => {
-  const products = await Product.findAll();
-  res.json(products);
+const getAll =  async (req, res, next) => {
+	const products = await Product.findAll();
+  	if (products.length === 0) {
+		const err = new Error("No hay productos");
+		err.status = 404;
+		next(err);
+		return;
+  	}
+  	if (!products) {
+	  	const err = new Error("No se pudo obtener los productos");
+	  	err.status = 500;
+	  	next(err);
+	  	return;
+  	}
+  	return res.json(JSON.stringify(products));
 };
 
 //get product by id
