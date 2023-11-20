@@ -26,8 +26,14 @@ const getById = async (req, res) => {
 
 //create product
 const create = async (req, res) => {
-  const product = await Product.create(req.body);
-  res.json(product);
+	if(!req.body.name || !req.body.price || !req.body.weight || !req.body.packing || !req.body.code || !req.body.description || !req.body.img || !req.body.genre){
+		res.status(400).send({
+			error: "Faltan datos"
+		});
+		return;
+	}
+  	await Product.create(req.body);
+  	return res.json({ success: "Product created" });
 };
 
 //update product
