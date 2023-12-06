@@ -21,9 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 		type: DataTypes.INTEGER
 	},
     name: DataTypes.STRING,
-	price: DataTypes.DECIMAL,
-	weight: DataTypes.INTEGER,
-	packing: DataTypes.STRING,
+	pack: DataTypes.ARRAY(DataTypes.JSON),
 	code: DataTypes.STRING,
     description: DataTypes.TEXT,
 	img: DataTypes.ARRAY(DataTypes.STRING),
